@@ -1,6 +1,9 @@
 package models;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+
+
 
 public class Cart {
      ArrayList<Item> items;
@@ -29,6 +32,13 @@ public class Cart {
         this.items.add(new Item(item));
         return true;
      }
+    //  public void addd(Item item){
+    //     this.items.add(new Item(item)); 
+    //  }
+
+     public boolean contains(Item item){
+        return this.items.contains(item);
+     }
      /**
      * Name: remove
      * @param name
@@ -36,21 +46,54 @@ public class Cart {
      * Inside the function:
      *   1. Removes the item that matches the name passed in.
      */
+
+     public void clear(){
+        this.items.clear();
+     }
      public void remove(String name){
         if(items.isEmpty()){
             throw new IllegalStateException("Can not remove item from an Empty cart");
         }
-        for (int i = 0; i < this.items.size(); i++) {
-            if(this.items.get(i).getName().equals(name)){
-                this.items.remove(i);
-            }
-        }
+        // for (int i = 0; i < this.items.size(); i++) {
+        //     if(this.items.get(i).getName().equals(name)){
+        //         this.items.remove(i);
+        //     }
+        // }
+        this.items.removeIf((item) -> item.getName().equals(name));
      }
       public boolean isEmpty(){
         return this.items.isEmpty();
       }
 
+      public double getSubtotal(){
+        //  double subtotal = 0;
+        //  for (int i = 0; i < this.items.size(); i++) {
+        //     subtotal += this.items.get(i).getPrice();
+        //  }
+        //  return subtotal;
 
+        return this.items.stream()
+               .mapToDouble((item) -> item.getPrice()).sum();
+      }
+
+     public double getTax(double subtotal){
+        DecimalFormat formatter = new DecimalFormat("#.##");
+        return Double.parseDouble(formatter.format(subtotal * 0.13));
+      }
+
+      public double getTotal(double subtotal, double tax){
+        return subtotal + tax ; 
+      }
+
+      public String checkOut(){
+        if(items.isEmpty()){
+            throw new IllegalStateException("Can not checkout an Empty cart");
+        }
+        return "\tRECEIPT\n\n" +
+               "\tSubtotal: $" + getSubtotal() + "\n" +
+               "\tTax: $" + getTax(getSubtotal()) + "\n" +
+               "\tTotal: $" + getTotal(getSubtotal(), getTax(getSubtotal())) + "\n";
+      }
      /**
      *  Name: checkout
      *  @return (String)
