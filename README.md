@@ -33,8 +33,15 @@ So after adding and removing what you want in the cart you can complete a checko
 ### and make sure that the application work properly
 By starting this is the requirement we have to test for this application and make sure there are all passed the test
 
+![image](https://user-images.githubusercontent.com/103323625/194893262-c31659ba-af5d-43be-835e-a3980c07c10a.png)
 
-     
+And as we see all requirement are there to make sure the test is passed
+
+![image](https://user-images.githubusercontent.com/103323625/194893777-aa44baf6-9c5c-4e8c-a032-791980085c37.png)
+![image](https://user-images.githubusercontent.com/103323625/194894020-fc4f79b8-2d20-41bd-b740-9d49530d5e41.png)
+![image](https://user-images.githubusercontent.com/103323625/194894165-47036700-2bbb-4cdd-8d6d-559839ee54b4.png)
+
+this just make us feel confident to run the app because we know that there is no issue there      
      
 ### This is how our application work!!
 
